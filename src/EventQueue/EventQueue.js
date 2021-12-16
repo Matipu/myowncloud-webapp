@@ -57,7 +57,6 @@ export default class EventQueue extends Component {
   waitUntil = (condition) => {
     return new Promise((resolve) => {
         let interval = setInterval(() => {
-          console.log(this.actualProcessingCount)
             if (!condition()) {
                 return
             }

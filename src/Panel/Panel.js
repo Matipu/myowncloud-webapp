@@ -33,6 +33,10 @@ export default class Panel extends Component {
     this.props.delete(this.props.document.name, this.props.document.id);
   };
 
+  downloadFile = async () => {
+    await new FileComunication().downloadFile(this.props.document.id);
+  };
+
   _handleKeyDown = async (e) => {
     console.log(e)
     if (e.key === 'Enter') {
@@ -70,10 +74,13 @@ export default class Panel extends Component {
     return (
       <ContextMenuTrigger id={this.props.document.id}>
       <ContextMenu id={this.props.document.id}>
-        <MenuItem data={{ foo: "bar" }} onClick={this.changeName}>
+      <MenuItem onClick={this.downloadFile}>
+          Pobierz
+        </MenuItem>
+        <MenuItem onClick={this.changeName}>
           Zmień nazwę
         </MenuItem>
-        <MenuItem data={{ foo: "bar" }} onClick={this.delete}>
+        <MenuItem onClick={this.delete}>
           Usuń
         </MenuItem>
       </ContextMenu>
